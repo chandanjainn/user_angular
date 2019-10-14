@@ -1,0 +1,23 @@
+<div class="search-bar">
+  <input
+    type="text"
+    placeholder="Type to filter the name column..."
+    (keyup)="updateFilter($event)"
+  />
+</div>
+<div>
+  <ngx-datatable
+    class="material expandable"
+    [messages]=""
+    [rows]="rows"
+    [columns]="columns"
+    sortType="multi"
+    columnMode="force"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    rowHeight="auto"
+    [limit]="5"
+    (activate)="goToNavbar($event)"
+  >
+  </ngx-datatable>
+</div>

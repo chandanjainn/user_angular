@@ -16,9 +16,11 @@
     "@angular/compiler": "~8.2.8",
     "@angular/core": "~8.2.8",
     "@angular/forms": "~8.2.8",
+    "@angular/material": "^8.2.2",
     "@angular/platform-browser": "~8.2.8",
     "@angular/platform-browser-dynamic": "~8.2.8",
     "@angular/router": "~8.2.8",
+    "@swimlane/ngx-datatable": "^16.0.2",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.6",
     "@angular/cli": "~8.3.6",
+    "@angular/cdk": "~8.2.1",
     "@angular/compiler-cli": "~8.2.8",
     "@angular/language-service": "~8.2.8",
     "@types/node": "~8.9.4",

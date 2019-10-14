@@ -1,0 +1,75 @@
+<div class="form-container">
+  <div class="container">
+    <form [formGroup]="feedbackForm" (ngSubmit)="showMessage()">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input type="text" matInput formControlName="name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input type="email" matInput formControlName="email" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input type="text" matInput formControlName="phone" />
+      </mat-form-field>
+      <div formGroupName="address">
+        <mat-label>Address</mat-label>
+        <div class="address-container">
+          <mat-form-field>
+            <mat-label>Street</mat-label>
+            <input type="text" matInput formControlName="street" />
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="state"
+              [matAutocomplete]="auto"
+            />
+          </mat-form-field>
+
+          <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="populateCityDropdown($event.option.value)"
+          >
+            <mat-option
+              *ngFor="let option of filteredCities | async"
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <mat-select matNativeControl formControlName="city">
+              <mat-option *ngFor="let city of cities" [value]="city">{{
+                city
+              }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Zipcode</mat-label>
+            <input type="text" matInput formControlName="zipcode" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Comments</mat-label>
+        <textarea matInput formControlName="comments"></textarea>
+      </mat-form-field>
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!feedbackForm.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

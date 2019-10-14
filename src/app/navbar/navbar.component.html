@@ -1,0 +1,57 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav mode="side" opened
+    >Users
+    <div *ngIf="users">
+      <div *ngFor="let user of users">
+        <button
+          class="user-button"
+          mat-stroked-button
+          color="primary"
+          (click)="showData(user.name)"
+        >
+          {{ user.name }}
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="details-container">
+      <div *ngIf="selectedUser">User Details</div>
+      <div>
+        <mat-card class="user-details-card" *ngIf="selectedUser">
+          <mat-card-header>
+            <mat-card-title>{{ selectedUser.name }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="details">
+              <b>Username:</b>{{ selectedUser.username }}
+            </div>
+            <div class="details"><b>Email:</b>{{ selectedUser.email }}</div>
+            <div class="details">
+              <b>Company Name :</b>{{ selectedUser.companyName }}
+            </div>
+            <div class="details"><b>Address:</b>{{ selectedUser.address }}</div>
+          </mat-card-content>
+          <mat-card-footer
+            ><button
+              class="user-button"
+              mat-raised-button
+              color="primary"
+              (click)="goToForm()"
+            >
+              Feedback!
+            </button></mat-card-footer
+          >
+          <mat-card-footer>{{ selectedUser.website }}</mat-card-footer>
+        </mat-card>
+      </div>
+      <div>
+        <a [routerLink]="['/home']"
+          ><button class="user-button" mat-raised-button color="primary">
+            Go back
+          </button></a
+        >
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
