@@ -17,6 +17,22 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+export class ActivatedRouteMock1 {
+  paramMap = of(
+    convertToParamMap({
+      name: 'Leanne Graham'
+    })
+  );
+}
+
+export class ActivatedRouteMock2 {
+  paramMap = of(
+    convertToParamMap({
+      name: ''
+    })
+  );
+}
+
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
   let getUsersSpy: jasmine.Spy;
@@ -49,13 +65,7 @@ describe('NavbarComponent', () => {
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {
-            paramMap: of(
-              convertToParamMap({
-                name: 'Leanne Graham'
-              })
-            )
-          }
+          useClass: ActivatedRouteMock1
         },
         { provide: UserService, useValue: userService }
       ]
@@ -71,7 +81,7 @@ describe('NavbarComponent', () => {
     expect(getUsersSpy.calls.any()).toBe(true, 'getUsersSpy called');
   });
 
-  it('should selected users ', () => {
+  it('should show selected users ', () => {
     expect(getUserSpy.calls.any()).toBe(true, 'getUserSpy called');
   });
 
@@ -85,7 +95,51 @@ describe('NavbarComponent', () => {
   it('should show selected user ', () => {
     component.users = transformedUsers;
     component.showData('Leanne Graham');
-
     expect(component.selectedUser).toBe(transformedUsers[0]);
+  });
+});
+
+describe('NavbarComponent without query param', () => {
+  let component: NavbarComponent;
+  let router: Router;
+
+  let fixture: ComponentFixture<NavbarComponent>;
+
+  beforeEach(() => {
+    const userService = jasmine.createSpyObj('UserService', [
+      'getUsers',
+      'getUserByName'
+    ]);
+    userService.getUsers.and.returnValue(of(transformedUsers));
+    userService.getUserByName.and.returnValue(of(transformedUsers));
+
+    TestBed.configureTestingModule({
+      declarations: [NavbarComponent],
+      imports: [
+        BrowserAnimationsModule,
+        RouterModule,
+        MatSidenavModule,
+        MatCardModule,
+        MatButtonModule,
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useClass: ActivatedRouteMock2
+        },
+        { provide: UserService, useValue: userService }
+      ]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(NavbarComponent);
+    router = fixture.debugElement.injector.get(Router);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+  it('should not popuate selected user on landing ', () => {
+    component.users = transformedUsers;
+    expect(component.selectedUser).not.toBeDefined();
   });
 });

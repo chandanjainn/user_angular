@@ -29,4 +29,17 @@ let users = [
   }
 ];
 
-export { transformedUsers, users };
+let feedbackMock = {
+  name: 'chandna',
+  email: 'chandan@gmail.com',
+  phone: '1234566789',
+  comments: 'asas',
+  address: {
+    street: 'sas',
+    city: 'asas',
+    state: 'sad',
+    zipcode: 'sdad'
+  }
+};
+
+export { transformedUsers, users, feedbackMock };
