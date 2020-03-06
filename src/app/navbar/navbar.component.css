@@ -49,3 +49,8 @@ mat-card-footer,
   flex-wrap: wrap;
   flex-direction: column;
 }
+
+mat-card {
+  width: 600px;
+  height: 400px;
+}
