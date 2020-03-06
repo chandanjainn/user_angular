@@ -4,7 +4,9 @@
     <div *ngIf="users">
       <div *ngFor="let user of users">
         <button
-          class="user-button"
+          [ngClass]="{
+            'user-button-clicked': selectedUser?.name == user.name
+          }"
           mat-stroked-button
           color="primary"
           (click)="showData(user.name)"

@@ -8,12 +8,13 @@
   padding: 10px;
 }
 
-.user-button {
+button {
   margin: 5px;
   width: 200px;
 }
 
-.user-button:focus {
+.user-button:focus,
+.user-button-clicked {
   color: white;
   background-color: #3f51b5;
 }
