@@ -1,50 +1,68 @@
 {
-  "name": "user-table",
-  "version": "0.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
-  },
-  "private": true,
-  "dependencies": {
-    "@angular/animations": "~8.2.8",
-    "@angular/common": "~8.2.8",
-    "@angular/compiler": "~8.2.8",
-    "@angular/core": "~8.2.8",
-    "@angular/forms": "~8.2.8",
-    "@angular/material": "^8.2.2",
-    "@angular/platform-browser": "~8.2.8",
-    "@angular/platform-browser-dynamic": "~8.2.8",
-    "@angular/router": "~8.2.8",
-    "@swimlane/ngx-datatable": "^16.0.2",
-    "rxjs": "~6.4.0",
-    "tslib": "^1.10.0",
-    "zone.js": "~0.9.1"
-  },
-  "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.6",
-    "@angular/cli": "~8.3.6",
-    "@angular/cdk": "~8.2.1",
-    "@angular/compiler-cli": "~8.2.8",
-    "@angular/language-service": "~8.2.8",
-    "@types/node": "~8.9.4",
-    "@types/jasmine": "~3.3.8",
-    "@types/jasminewd2": "~2.0.3",
-    "codelyzer": "^5.0.0",
-    "jasmine-core": "~3.4.0",
-    "jasmine-spec-reporter": "~4.2.1",
-    "karma": "~4.1.0",
-    "karma-chrome-launcher": "~2.2.0",
-    "karma-coverage-istanbul-reporter": "~2.0.1",
-    "karma-jasmine": "~2.0.1",
-    "karma-jasmine-html-reporter": "^1.4.0",
-    "protractor": "~5.4.0",
-    "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "typescript": "~3.5.3"
-  }
+    "name": "user-table",
+    "version": "0.0.0",
+    "scripts": {
+        "ng": "ng",
+        "start": "ng serve",
+        "build": "ng build",
+        "test": "ng test",
+        "lint": "ng lint",
+        "e2e": "ng e2e",
+        "lint-fix": "ng lint --fix=true",
+        "fmt-fix": "prettier --write \"src/**/*.*\" "
+    },
+    "private": true,
+    "dependencies": {
+        "@angular/animations": "~8.2.8",
+        "@angular/common": "~8.2.8",
+        "@angular/compiler": "~8.2.8",
+        "@angular/core": "~8.2.8",
+        "@angular/forms": "~8.2.8",
+        "@angular/material": "^8.2.2",
+        "@angular/platform-browser": "~8.2.8",
+        "@angular/platform-browser-dynamic": "~8.2.8",
+        "@angular/router": "~8.2.8",
+        "@swimlane/ngx-datatable": "^16.0.2",
+        "rxjs": "~6.4.0",
+        "tslib": "^1.10.0",
+        "zone.js": "~0.9.1"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "~0.803.6",
+        "@angular/cli": "~8.3.6",
+        "@angular/cdk": "~8.2.1",
+        "@angular/compiler-cli": "~8.2.8",
+        "@angular/language-service": "~8.2.8",
+        "@types/node": "~8.9.4",
+        "@types/jasmine": "~3.3.8",
+        "@types/jasminewd2": "~2.0.3",
+        "codelyzer": "^5.0.0",
+        "jasmine-core": "~3.4.0",
+        "jasmine-spec-reporter": "~4.2.1",
+        "karma": "~4.1.0",
+        "karma-chrome-launcher": "~2.2.0",
+        "karma-coverage-istanbul-reporter": "~2.0.1",
+        "husky": "^4.2.3",
+        "prettier": "^1.18.2",
+        "karma-jasmine": "~2.0.1",
+        "karma-jasmine-html-reporter": "^1.4.0",
+        "protractor": "~5.4.0",
+        "ts-node": "~7.0.0",
+        "tslint": "~5.15.0",
+        "typescript": "~3.5.3"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "bracketSpacing": true,
+        "printWidth": 80,
+        "endOfLine": "lf"
+    },
+    "husky": {
+        "hooks": {
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+            "pre-commit": "npm run fmt-fix && npm run lint-fix && npm run test"
+        }
+    }
 }
