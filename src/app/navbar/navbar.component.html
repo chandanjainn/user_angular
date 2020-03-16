@@ -5,10 +5,8 @@
       <div *ngFor="let user of users">
         <button
           [ngClass]="{
-            'user-button-clicked': selectedUser?.name == user.name
+            'user-button-clicked-twice': selectedUser?.name == user.name
           }"
-          mat-stroked-button
-          color="primary"
           (click)="showData(user.name)"
         >
           {{ user.name }}
@@ -37,8 +35,7 @@
           <mat-card-footer
             ><button
               class="user-button"
-              mat-raised-button
-              color="primary"
+             
               (click)="goToForm()"
             >
               Feedback!
