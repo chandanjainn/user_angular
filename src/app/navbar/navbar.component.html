@@ -3,10 +3,12 @@
     >Users
     <div *ngIf="users">
       <div *ngFor="let user of users">
-        <button
-          
+        <button    
           mat-stroked-button
           color="primary"
+          [ngClass]="{
+            'user-button-clicked-twice': selectedUser?.name == user.name
+          }"
           (click)="showData(user.name)"
         >
           {{ user.name }}
@@ -35,8 +37,7 @@
           <mat-card-footer
             ><button
               class="user-button"
-              mat-raised-button
-              color="primary"
+             
               (click)="goToForm()"
             >
               Feedback!
