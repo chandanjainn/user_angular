@@ -3,7 +3,9 @@
     >Users
     <div *ngIf="users">
       <div *ngFor="let user of users">
-        <button
+        <button    
+          mat-stroked-button
+          color="primary"
           [ngClass]="{
             'user-button-clicked-twice': selectedUser?.name == user.name
           }"
